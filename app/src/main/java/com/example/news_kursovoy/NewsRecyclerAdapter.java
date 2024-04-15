@@ -1,5 +1,6 @@
 package com.example.news_kursovoy;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,13 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
         } else {
             Picasso.get().load(R.drawable.not_image_icon)
                     .into(holder.imageView);
+
         }
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), NewsFullActivity.class);
+            intent.putExtra("url", article.getUrl());
+            v.getContext().startActivity(intent);
+        });
     }
 
 
@@ -50,6 +57,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
     void updateData(List<Article> data){
         articleList.clear();
         articleList.addAll(data);
+        notifyDataSetChanged();
     }
 
     @Override
