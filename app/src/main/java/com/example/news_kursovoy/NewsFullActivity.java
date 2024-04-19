@@ -25,9 +25,11 @@ public class NewsFullActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(webView.canGoBack())
+        if(webView.canGoBack()) {
             webView.goBack();
-        else
-        super.onBackPressed();
+        } else {
+            super.onBackPressed();
+        }
     }
+
 }

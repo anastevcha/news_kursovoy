@@ -199,10 +199,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void showCountryDialog() {
         final String category = "GENERAL"; // Определение переменной category
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Select Country");
-        String[] countries = {"us", "ru"}; // Пример стран
+        builder.setTitle("Выберите страну");
+        String[] countries = {"США", "Россия", "Бразилия", "Япония", "Франция"};
         builder.setItems(countries, (dialog, which) -> {
-            String selectedCountry = countries[which].toLowerCase(); // Получаем выбранную страну
+            String selectedCountry;
+            switch (which) {
+                case 0:
+                    selectedCountry = "us";
+                    break;
+                case 1:
+                    selectedCountry = "ru";
+                    break;
+                case 2:
+                    selectedCountry = "br";
+                    break;
+                case 3:
+                    selectedCountry = "jp";
+                    break;
+                case 4:
+                    selectedCountry = "fr";
+                    break;
+                default:
+                    selectedCountry = "";
+                    break;
+            }
             this.selectedCountry = selectedCountry; // Сохраняем выбранную страну
             String query = getQueryForCountry(selectedCountry); // Получаем запрос для выбранной страны
             getNews(category, query, selectedCountry); // Передача категории, запроса и выбранной страны
@@ -212,16 +232,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dialog.show();
     }
 
+
     private String getQueryForCountry(String selectedCountry) {
         switch (selectedCountry) {
-            case "us":
-                return "country=us"; // Запрос для США
-            case "ru":
-                return "country=ru"; // Запрос для России
+            case "США":
+                return "country=us";
+            case "Россия":
+                return "country=ru";
+            case "Бразилия":
+                return "country=br";
+            case "Япония":
+                return "country=jp";
+            case "Франция":
+                return "country=fr";
             default:
                 return ""; // Пустой запрос
         }
     }
+
 
     public void onClick(View v) {
         Button btn = (Button) v;
