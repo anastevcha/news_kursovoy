@@ -34,6 +34,8 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
         Article article = articleList.get(position);
         holder.titleTextView.setText(article.getTitle());
         holder.sourceTextView.setText(article.getSource().getName());
+        holder.publishedAt.setText(article.getPublishedAt());
+
 
         if (article.getUrlToImage() != null) {
             Picasso.get().load(article.getUrlToImage())
@@ -67,13 +69,14 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
 
     class NewsViewHolder extends RecyclerView.ViewHolder{
 
-TextView titleTextView, sourceTextView;
+TextView titleTextView, sourceTextView, publishedAt;
 ImageView imageView;
 
         public NewsViewHolder(@NonNull View itemView) {
             super(itemView);
             titleTextView = itemView.findViewById(R.id.article_title);
             sourceTextView = itemView.findViewById(R.id.article_source);
+            publishedAt = itemView.findViewById(R.id.publishedAt);
             imageView = itemView.findViewById(R.id.article_image_view);
         }
     }

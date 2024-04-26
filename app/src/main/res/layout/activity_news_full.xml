@@ -7,15 +7,16 @@
     tools:context=".NewsFullActivity">
 
     <TextView
+        android:id="@+id/app_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:gravity="center"
-        android:layout_marginTop="5dp"
-        android:textSize="30sp"
+        android:layout_height="50dp"
+        android:layout_marginTop="0dp"
+        android:background="@color/green"
         android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center"
         android:padding="4dp"
-        android:id="@+id/app_title"/>
+        android:text="NEW NEWS"
+        android:textSize="30sp" />
 
     <WebView
         android:layout_width="match_parent"

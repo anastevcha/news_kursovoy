@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     LinearProgressIndicator progressIndicator;
     Button btn1, btn2, btn3, btn4, btn5, btn6, btn7;
     SearchView searchView;
-    private String selectedCountry = "ru"; // По умолчанию "ru"
+    private String selectedCountry = "ru"; // По умолчанию русский
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                getNews("GENERAL", query, selectedCountry); // Передаем выбранную страну вместо использования глобальной переменной
+                getNews("GENERAL", query, selectedCountry);
                 return true;
             }
 
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         setupRecyclerView(selectedCountry);
-        getNews("GENERAL", null, selectedCountry); // Передаем выбранную страну вместо использования глобальной переменной
+        getNews("GENERAL", null, selectedCountry);
     }
 
 
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     void getNews(String category, String query, String selectedCountry) {
         if (selectedCountry == null || selectedCountry.isEmpty()) {
-            // Обработка случая, если selectedCountry пустое или равно null
+
             return;
         }
 
@@ -223,10 +223,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     selectedCountry = "";
                     break;
             }
-            this.selectedCountry = selectedCountry; // Сохраняем выбранную страну
-            String query = getQueryForCountry(selectedCountry); // Получаем запрос для выбранной страны
-            getNews(category, query, selectedCountry); // Передача категории, запроса и выбранной страны
-            setupRecyclerView(selectedCountry); // Обновляем RecyclerView для выбранной страны
+            this.selectedCountry = selectedCountry;
+            String query = getQueryForCountry(selectedCountry);
+            getNews(category, query, selectedCountry);
+            setupRecyclerView(selectedCountry);
         });
         AlertDialog dialog = builder.create();
         dialog.show();
@@ -246,7 +246,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case "Франция":
                 return "country=fr";
             default:
-                return ""; // Пустой запрос
+                return "";
         }
     }
 
@@ -257,6 +257,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String category = translateCategory(englishCategory);
 
         getNews(category, null, selectedCountry);
-        setupRecyclerView(selectedCountry); // Обновляем RecyclerView для выбранной страны
+        setupRecyclerView(selectedCountry);
     }
 }
